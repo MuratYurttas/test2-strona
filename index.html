@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotkanie Samochodowe 2025</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Arka planda otomatik oynayan video -->
+    <video autoplay muted id="bg-video">
+        <source src="video1.mp4" type="video/mp4">
+        Twoja przeglądarka nie obsługuje wideo.
+    </video>
+
+    <div class="overlay">
+        <header>
+            <h1>Spotkanie Samochodowe 2025</h1>
+            <p>Największe wydarzenie motoryzacyjne roku!</p>
+            <nav>
+                <a href="register.html" class="btn">Rejestracja</a>
+                <a href="galeria.html" class="btn">Galeria</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- JavaScript ile Smooth Video Geçişi ve Hız Ayarı -->
+    <script>
+        const video = document.getElementById("bg-video");
+
+        // Sıralı oynatılacak videolar
+        const videos = ["video1.mp4", "video2.mp4","video3.mp4","video4.mp4"]; // İstediğin kadar video ekleyebilirsin
+        let videoIndex = 0;
+
+        function setVideoSpeed() {
+            video.playbackRate = 8; // Hızlandırma: 1.0 = normal, 1.5 = %50 daha hızlı, 2.0 = 2 kat hız
+        }
+
+        // İlk video başladığında hızlandır
+        setVideoSpeed();
+
+        video.addEventListener("ended", function () {
+            video.classList.add("fade-out"); // Geçiş efekti başlat
+
+            setTimeout(() => {
+                videoIndex = (videoIndex + 1) % videos.length; // Sıradaki videoya geç
+                video.src = videos[videoIndex]; // Yeni videoyu yükle
+                video.play(); // Otomatik oynat
+                video.onloadeddata = setVideoSpeed; // Yeni video yüklendiğinde tekrar hızlandır
+                video.classList.remove("fade-out"); // Efekti kaldır
+            }, 1000); // 1 saniye bekletme süresi (smooth geçiş için)
+        });
+    </script>
+
+</body>
+</html>
