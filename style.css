@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* Arka plandaki video */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Sayfanın üstündeki içerik */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Şeffaf karartma efekti */
+}
+
+h1 {
+    font-size: 3rem;
+    color: white;
+}
+
+p {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Menü butonları */
+nav {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    color: white;
+    background-color: red;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: darkred;
+}
+/* Arka planda video */
+/* Arka planda video */
+#bg-video {
+    position: fixed;            /* Videoyu sabit konuma getirir, sayfa kaydırıldığında yerinde kalır */
+    top: 0;                     /* Sayfanın en üstüne yerleştirir */
+    left: 0;                    /* Sayfanın en soluna yerleştirir */
+    width: 100%;                /* Genişliği tam ekran yapar */
+    height: 100%;               /* Yüksekliği tam ekran yapar */
+    object-fit: cover;          /* Videoyu tam ekran doldurur, kırpmayı optimize eder */
+    z-index: -1;                /* Videoyu tüm içeriklerin arkasına atar */
+    transition: opacity 1s ease-in-out;  /* Opaklık değişimini yumuşak hale getirir */
+}
+
+/* Video değişirken fade-out efekti */
+.fade-out {
+    opacity: 0;                 /* Videonun görünmez olmasını sağlar (kaybolma efekti) */
+}
+

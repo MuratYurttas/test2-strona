@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - Spotkanie Samochodowe</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="left">
+            <h2>📍 Miejsce: Stadion Narodowy Warszawa </h2>
+            <h2>📅 Data: 10 sierpnia 2025</h2>
+            <p>Wypełnij formularz rejestracyjny i dołącz do naszego niesamowitego wydarzenia motoryzacyjnego!</p>
+        </div>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn">🏠 Strona Główna</a>
+            <a href="galeria.html" class="btn">Galeria</a>
+        </div>
+        <div class="right">
+            <h1>Zarejestruj się</h1>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="name">Imię:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="surname">Nazwisko:</label>
+                    <input type="text" id="surname" name="surname" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Telefon:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="car">Model Samochodu:</label>
+                    <input type="text" id="car" name="car" required>
+                </div>
+
+                <button type="submit">Zarejestruj się</button>
+            </form>
+
+            <p id="responseMessage"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Sayfanın yenilenmesini engelle
+            
+            const formData = {
+                name: document.getElementById("name").value,
+                surname: document.getElementById("surname").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value,
+                car_model: document.getElementById("car").value
+            };
+
+            const response = await fetch("http://localhost:5000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+            document.getElementById("responseMessage").innerText = result.message || result.error;
+        });
+    </script>
+
+</body>
+</html>
